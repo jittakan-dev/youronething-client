@@ -7,30 +7,34 @@ const Page = ({ params: { productId } }) => {
   const [product, setProduct] = useState([]);
   const [showNotification, setShowNotification] = useState(false);
 
-  // const refreshSelectedProductIds = () => {
-  //   JSON.parse(localStorage.getItem("productId"));
-  // };
-
   const [productIds, setProductIds] = useState([]);
 
   const refreshSelectedProductIds = () => {
-    const refreshProductId = JSON.parse(localStorage.getItem("productId"));
-    setProductIds(refreshProductId);
+    try {
+      const refreshProductId = JSON.parse(localStorage.getItem("productId"));
+      setProductIds(refreshProductId || []);
+    } catch (error) {
+      console.error("Error refreshing selected product IDs:", error);
+    }
   };
 
   const addProductId = (productId) => {
-    console.log("BEFORE" + JSON.parse(localStorage.getItem("productId")));
-    refreshSelectedProductIds();
-    const updatedProductIds = [...productIds, productId];
+    try {
+      console.log("BEFORE: " + JSON.parse(localStorage.getItem("productId")));
+      refreshSelectedProductIds();
+      const updatedProductIds = [...productIds, productId];
 
-    localStorage.setItem("productId", JSON.stringify(updatedProductIds));
-    setShowNotification(true);
-    refreshSelectedProductIds();
-    console.log("AFTER" + JSON.parse(localStorage.getItem("productId")));
-    setProductIds(updatedProductIds);
-    setTimeout(() => {
-      setShowNotification(false);
-    }, 1000);
+      localStorage.setItem("productId", JSON.stringify(updatedProductIds));
+      setShowNotification(true);
+      refreshSelectedProductIds();
+      console.log("AFTER: " + JSON.parse(localStorage.getItem("productId")));
+      setProductIds(updatedProductIds);
+      setTimeout(() => {
+        setShowNotification(false);
+      }, 1000);
+    } catch (error) {
+      console.error("Error adding product ID:", error);
+    }
   };
 
   const fetchAndSetData = useCallback(async () => {
@@ -76,48 +80,60 @@ const Page = ({ params: { productId } }) => {
         <div className="w-1/2 sx:w-full h-auto bg-green-700"></div>
         <div className="flex flex-col justify-center items-center w-1/2 sx:w-full h-auto">
           <div className="min-h-screen sx:min-h-fit h-auto w-full mb-4 sx:mb-2">
-            <Image
-              src={"/product-images/" + product.image_1}
-              alt=""
-              width="0"
-              height="0"
-              sizes="100vw"
-              className="w-full h-auto object-cover"
-              priority={true}
-            />
+            {product.image_1 && (
+              <Image
+                src={"/product-images/" + product.image_1}
+                alt=""
+                width="0"
+                height="0"
+                sizes="100vw"
+                className="w-full h-auto object-cover"
+                placeholder="blur"
+                blurDataURL={"/web-images/blur.png"}
+              />
+            )}
           </div>
           <div className="min-h-screen sx:min-h-fit h-auto w-full mb-4 sx:mb-2">
-            <Image
-              src={"/product-images/" + product.image_2}
-              alt=""
-              width="0"
-              height="0"
-              sizes="100vw"
-              className="w-full h-auto object-contain"
-              priority={true}
-            />
+            {product.image_2 && (
+              <Image
+                src={"/product-images/" + product.image_2}
+                alt=""
+                width="0"
+                height="0"
+                sizes="100vw"
+                className="w-full h-auto object-cover"
+                placeholder="blur"
+                blurDataURL={"/web-images/blur.png"}
+              />
+            )}
           </div>
           <div className="min-h-screen sx:min-h-fit h-auto w-full mb-4 sx:mb-2">
-            <Image
-              src={"/product-images/" + product.image_3}
-              alt=""
-              width="0"
-              height="0"
-              sizes="100vw"
-              className="w-full h-auto object-contain"
-              priority={true}
-            />
+            {product.image_3 && (
+              <Image
+                src={"/product-images/" + product.image_3}
+                alt=""
+                width="0"
+                height="0"
+                sizes="100vw"
+                className="w-full h-auto object-cover"
+                placeholder="blur"
+                blurDataURL={"/web-images/blur.png"}
+              />
+            )}
           </div>
           <div className="min-h-screen sx:min-h-fit h-auto w-full">
-            <Image
-              src={"/product-images/" + product.image_4}
-              alt=""
-              width="0"
-              height="0"
-              sizes="100vw"
-              className="w-full h-auto object-contain"
-              priority={true}
-            />
+            {product.image_4 && (
+              <Image
+                src={"/product-images/" + product.image_4}
+                alt=""
+                width="0"
+                height="0"
+                sizes="100vw"
+                className="w-full h-auto object-cover"
+                placeholder="blur"
+                blurDataURL={"/web-images/blur.png"}
+              />
+            )}{" "}
           </div>
         </div>
       </div>

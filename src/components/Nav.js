@@ -27,28 +27,41 @@ function Nav() {
   const [productIds, setProductIds] = useState([]);
 
   const refreshSelectedProductIds = () => {
-    const refreshProductId = JSON.parse(localStorage.getItem("productId"));
-    setProductIds(refreshProductId);
+    try {
+      const refreshProductId = JSON.parse(localStorage.getItem("productId"));
+      if (refreshProductId && Array.isArray(refreshProductId)) {
+        setProductIds(refreshProductId);
+      } else {
+        setProductIds([]);
+      }
+    } catch (error) {
+      console.error("Error while parsing productIds from localStorage:", error);
+      setProductIds([]);
+    }
   };
 
   const deleteProductId = (index) => {
-    const existingProductIds = JSON.parse(localStorage.getItem("productId"));
-    if (
-      existingProductIds &&
-      Array.isArray(existingProductIds) &&
-      index >= 0 &&
-      index < existingProductIds.length
-    ) {
-      existingProductIds.splice(index, 1);
-      setProductIds(existingProductIds);
-      localStorage.setItem("productId", JSON.stringify(existingProductIds));
-      console.log(`Deleted productId at index ${index}`);
+    try {
+      const existingProductIds = JSON.parse(localStorage.getItem("productId"));
+      if (
+        existingProductIds &&
+        Array.isArray(existingProductIds) &&
+        index >= 0 &&
+        index < existingProductIds.length
+      ) {
+        existingProductIds.splice(index, 1);
+        setProductIds(existingProductIds);
+        localStorage.setItem("productId", JSON.stringify(existingProductIds));
+        console.log(`Deleted productId at index ${index}`);
+      } else {
+        console.error("Invalid index or null productIds");
+      }
+    } catch (error) {
+      console.error("Error while deleting productId:", error);
+    } finally {
       refreshSelectedProductIds();
     }
-    refreshSelectedProductIds();
   };
-
-  // Usage example: deleteProductId(0); // Delete productId at index 0
 
   useEffect(() => {
     refreshSelectedProductIds();

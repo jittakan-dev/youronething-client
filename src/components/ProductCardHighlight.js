@@ -19,7 +19,7 @@ const ProductCardHighlight = ({
         const scrollTop =
           window.pageYOffset || document.documentElement.scrollTop;
         const cardOffsetTop = cardRef.current.offsetTop;
-        const parallaxOffset = (cardOffsetTop - scrollTop) * 0.5; // Adjust the parallax effect speed here
+        const parallaxOffset = (cardOffsetTop - scrollTop) * 0.5;
 
         cardRef.current.style.transform = `translateY(${parallaxOffset}px)`;
       }
@@ -43,15 +43,18 @@ const ProductCardHighlight = ({
           <span className="text-xl sx:text-lg">{title_description}</span>
         </div>
       </div>
-      <Image
-        src={"/product-images/" + image_h}
-        alt="Landscape picture"
-        width="0"
-        height="0"
-        sizes="100vw"
-        className="w-full h-full object-cover"
-        priority={true}
-      />
+      {image_h && (
+        <Image
+          src={"/product-images/" + image_h}
+          alt=""
+          width="0"
+          height="0"
+          sizes="100vw"
+          className="w-full h-auto object-cover"
+          placeholder="blur"
+          blurDataURL={"/web-images/blur.png"}
+        />
+      )}
     </Link>
   );
 };

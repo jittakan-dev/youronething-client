@@ -8,11 +8,7 @@ const Page = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Perform login logic here
-    // Example: send login request to the server
-
-    // Redirect to dashboard after successful login
-    Router.push("/dashboard");
+    //Router.push("/dashboard");
   };
   return (
     <div className="flex flex-col justify-start items-center w-full min-h-screen h-auto px-0 sx:px-6 2xl:px-0 pt-24 mb-10">

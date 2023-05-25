@@ -14,7 +14,6 @@ const Page = () => {
 
   const handleSignUp = () => {
     if (accepted) {
-      // Perform signup logic here
       console.log("User signed up successfully!");
     } else {
       console.log("Please accept the Terms of Service and Privacy Policy.");
@@ -23,11 +22,7 @@ const Page = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Perform sign up logic here
-    // Example: send sign up request to the server
-
-    // Redirect to dashboard after successful sign up
-    Router.push("/dashboard");
+    //Router.push("/dashboard");
   };
   return (
     <div className="flex flex-col justify-start items-center w-full h-screen px-0 sx:px-6 2xl:px-0 pt-24  mb-10">
