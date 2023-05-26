@@ -9,31 +9,30 @@ const Page = ({ params: { productId } }) => {
 
   const [productIds, setProductIds] = useState([]);
 
-  const refreshSelectedProductIds = () => {
-    try {
-      const refreshProductId = JSON.parse(localStorage.getItem("productId"));
-      setProductIds(refreshProductId || []);
-    } catch (error) {
-      console.error("Error refreshing selected product IDs:", error);
+  useEffect(() => {
+    const storedProductId = localStorage.getItem("productId");
+    if (storedProductId) {
     }
-  };
+  }, []);
 
   const addProductId = (productId) => {
     try {
-      console.log("BEFORE: " + JSON.parse(localStorage.getItem("productId")));
-      refreshSelectedProductIds();
-      const updatedProductIds = [...productIds, productId];
+      const storedArray = JSON.parse(localStorage.getItem("productId")) || [];
 
-      localStorage.setItem("productId", JSON.stringify(updatedProductIds));
+      if (productId !== null && productId !== undefined) {
+        storedArray.push(productId);
+      } else {
+        throw new Error("Invalid productId");
+      }
+
+      localStorage.setItem("productId", JSON.stringify(storedArray));
+
       setShowNotification(true);
-      refreshSelectedProductIds();
-      console.log("AFTER: " + JSON.parse(localStorage.getItem("productId")));
-      setProductIds(updatedProductIds);
       setTimeout(() => {
         setShowNotification(false);
       }, 1000);
     } catch (error) {
-      console.error("Error adding product ID:", error);
+      console.error("Error adding productId:", error);
     }
   };
 
@@ -48,7 +47,6 @@ const Page = ({ params: { productId } }) => {
 
   useEffect(() => {
     fetchAndSetData();
-    refreshSelectedProductIds();
   }, [fetchAndSetData]);
 
   return (
@@ -71,9 +69,9 @@ const Page = ({ params: { productId } }) => {
               </button>
             </div>
           </div>
-          {/* {showNotification && (
+          {showNotification && (
             <div className="py-6">Product is added to cart!</div>
-          )} */}
+          )}
         </div>
       </div>
       <div className="relative flex sx:flex-col 2xl:flex-row justify-center items-center h-full w-full">

@@ -5,7 +5,7 @@ import { useState, useCallback, useEffect } from "react";
 function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-
+  let storedProducts = [];
   const clickNav = () => {
     setIsOpen(!isOpen);
     refreshSelectedProductIds();
@@ -24,42 +24,44 @@ function Nav() {
     refreshSelectedProductIds();
   };
 
-  const [productIds, setProductIds] = useState([]);
+  const [localStorageData, setLocalStorageData] = useState([]);
 
   const refreshSelectedProductIds = () => {
     try {
       const refreshProductId = JSON.parse(localStorage.getItem("productId"));
       if (refreshProductId && Array.isArray(refreshProductId)) {
-        setProductIds(refreshProductId);
+        setLocalStorageData(refreshProductId);
       } else {
-        setProductIds([]);
+        setLocalStorageData([]);
       }
     } catch (error) {
       console.error("Error while parsing productIds from localStorage:", error);
-      setProductIds([]);
+      setLocalStorageData([]);
     }
   };
 
   const deleteProductId = (index) => {
     try {
-      const existingProductIds = JSON.parse(localStorage.getItem("productId"));
-      if (
-        existingProductIds &&
-        Array.isArray(existingProductIds) &&
-        index >= 0 &&
-        index < existingProductIds.length
-      ) {
-        existingProductIds.splice(index, 1);
-        setProductIds(existingProductIds);
-        localStorage.setItem("productId", JSON.stringify(existingProductIds));
-        console.log(`Deleted productId at index ${index}`);
+      let storedArray = JSON.parse(localStorage.getItem("productId"));
+
+      if (!storedArray) {
+        storedArray = [];
+      }
+
+      storedArray.splice(index, 1);
+
+      localStorage.setItem("productId", JSON.stringify(storedArray));
+
+      const storedProducts = JSON.parse(localStorage.getItem("productId"));
+
+      if (storedProducts) {
+        setLocalStorageData(storedProducts);
+        console.log("ID FROM DEL: " + localStorageData);
       } else {
-        console.error("Invalid index or null productIds");
+        console.log("Failed to retrieve stored products.");
       }
     } catch (error) {
-      console.error("Error while deleting productId:", error);
-    } finally {
-      refreshSelectedProductIds();
+      console.error("Error deleting product ID:", error);
     }
   };
 
@@ -83,10 +85,13 @@ function Nav() {
         <div className="flex flex-col w-full h-fit justify-center items-center px-20">
           <div className="flex justify-between items-center w-full h-fit py-6 text-xl border-b-2 border-slate-800">
             <p>Your order</p>
-            <div>{productIds.length}</div>
+            {/* <div>{productIds.length}</div> */}
           </div>
           <div className="flex flex-col justify-center items-center w-full h-fit py-6 text-xl">
-            {productIds.map((productId, index) => (
+            {/* {localStorageData.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))} */}
+            {localStorageData.map((productId, index) => (
               <div key={index} className="flex justify-between w-full">
                 <div>
                   Key: {index} ItemId: {productId}
