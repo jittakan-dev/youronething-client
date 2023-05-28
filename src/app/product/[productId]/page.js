@@ -1,36 +1,29 @@
 "use client";
 import Image from "next/image";
+import { useContext, useEffect, useState, useCallback } from "react";
 import Mockdata from "@data/Mockdata";
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import { ProductIdContext } from "../../ProductIdContext";
 
 const Page = ({ params: { productId } }) => {
   const [product, setProduct] = useState([]);
   const [showNotification, setShowNotification] = useState(false);
-
-  const [productIds, setProductIds] = useState([]);
-
-  useEffect(() => {
-    const storedProductId = localStorage.getItem("productId");
-    if (storedProductId) {
-    }
-  }, []);
+  const { setProductId } = useContext(ProductIdContext);
 
   const addProductId = (productId) => {
     try {
-      const storedArray = JSON.parse(localStorage.getItem("productId")) || [];
-
-      if (productId !== null && productId !== undefined) {
+      if (productId) {
+        const storedArray = JSON.parse(localStorage.getItem("productId")) || [];
         storedArray.push(productId);
+        localStorage.setItem("productId", JSON.stringify(storedArray));
+        const memberCount = storedArray.length;
+        setProductId(memberCount);
+        setShowNotification(true);
+        setTimeout(() => {
+          setShowNotification(false);
+        }, 1000);
       } else {
         throw new Error("Invalid productId");
       }
-
-      localStorage.setItem("productId", JSON.stringify(storedArray));
-
-      setShowNotification(true);
-      setTimeout(() => {
-        setShowNotification(false);
-      }, 1000);
     } catch (error) {
       console.error("Error adding productId:", error);
     }
@@ -41,13 +34,16 @@ const Page = ({ params: { productId } }) => {
       setProduct(Mockdata[productId - 1]);
     } catch (error) {
       console.error(error);
-    } finally {
     }
   }, [productId]);
 
   useEffect(() => {
     fetchAndSetData();
-  }, [fetchAndSetData]);
+    const storedArray = JSON.parse(localStorage.getItem("productId")) || [];
+    localStorage.setItem("productId", JSON.stringify(storedArray));
+    const memberCount = storedArray.length;
+    setProductId(memberCount);
+  }, [fetchAndSetData, setProductId]);
 
   return (
     <div className="flex flex-row sx:flex-col-reverse">

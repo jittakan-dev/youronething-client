@@ -5,6 +5,7 @@ const Mockdata = [
     title_description: "desc Item 1",
     full_description:
       "full desc Item 1 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    image_c: "1-c.png",
     image_t: "1-t.png",
     image_1: "1-1.png",
     image_2: "1-2.png",
@@ -21,6 +22,7 @@ const Mockdata = [
     title_description: "desc Item 2",
     full_description:
       "full desc Item 2 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    image_c: "2-c.png",
     image_t: "2-t.png",
     image_1: "2-1.png",
     image_2: "2-2.png",
@@ -37,6 +39,7 @@ const Mockdata = [
     title_description: "desc Item 3",
     full_description:
       "full desc Item 3 -Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ",
+    image_c: "3-c.png",
     image_t: "3-t.png",
     image_1: "3-1.png",
     image_2: "3-2.png",
@@ -53,6 +56,7 @@ const Mockdata = [
     title_description: "desc Item 4",
     full_description:
       "full desc Item 4 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    image_c: "4-c.png",
     image_t: "4-t.png",
     image_1: "4-1.png",
     image_2: "4-2.png",
@@ -69,6 +73,7 @@ const Mockdata = [
     title_description: "desc Item 5",
     full_description:
       "full desc Item 5 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    image_c: "5-c.png",
     image_t: "5-t.png",
     image_1: "5-1.png",
     image_2: "5-2.png",
@@ -85,6 +90,7 @@ const Mockdata = [
     title_description: "desc Item 6",
     full_description:
       "full desc Item 6 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    image_c: "6-c.png",
     image_t: "6-t.png",
     image_1: "6-1.png",
     image_2: "6-2.png",
@@ -101,6 +107,7 @@ const Mockdata = [
     title_description: "desc Item 7",
     full_description:
       "full desc Item 7 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    image_c: "7-c.png",
     image_t: "7-t.png",
     image_1: "7-1.png",
     image_2: "7-2.png",
@@ -117,6 +124,7 @@ const Mockdata = [
     title_description: "desc Item 8",
     full_description:
       "full desc Item 8 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    image_c: "8-c.png",
     image_t: "8-t.png",
     image_1: "8-1.png",
     image_2: "8-2.png",
@@ -133,6 +141,7 @@ const Mockdata = [
     title_description: "desc Item 9",
     full_description:
       "full desc Item 9 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    image_c: "9-c.png",
     image_t: "9-t.png",
     image_1: "9-1.png",
     image_2: "9-2.png",
@@ -149,6 +158,7 @@ const Mockdata = [
     title_description: "desc Item 10",
     full_description:
       "full desc Item 10 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    image_c: "10-c.png",
     image_t: "10-t.png",
     image_1: "10-1.png",
     image_2: "10-2.png",
