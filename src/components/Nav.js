@@ -128,9 +128,11 @@ function Nav() {
             </div>
             <div className="flex flex-col justify-center items-center w-full h-fit py-6 text-xl">
               {selectedItems.map((item, index) => (
-                <div
+                <Link
+                  href={"/product/" + item.id}
                   key={index}
-                  className="flex justify-between w-full border-b-2 border-slate-800 pb-4 mb-4"
+                  className="group flex justify-between w-full border-b-2 border-slate-800 pb-4 mb-4"
+                  onClick={clickCartNavFalse}
                 >
                   <div>
                     <Image
@@ -139,7 +141,7 @@ function Nav() {
                       width="0"
                       height="0"
                       sizes="100%"
-                      className="w-full h-auto object-cover"
+                      className="w-full h-auto object-cover border-2 border-slate-400 group-hover:border-slate-700"
                       placeholder="blur"
                       blurDataURL={"/web-images/blur.png"}
                     />
@@ -156,13 +158,13 @@ function Nav() {
                     </div>
                     <div className="grow"></div>
                     <div
-                      className="text-base cursor-pointer self-end"
+                      className="text-base cursor-pointer self-end hover:text-red-700"
                       onClick={() => deleteProductId(index)}
                     >
                       Remove
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
               {showDelNotification && (
                 <div className="py-6">Product is deleted successfully!</div>
@@ -186,13 +188,13 @@ function Nav() {
       {/* Cart */}
       {/* silhouette*/}
       <div
-        className={`flex justify-between items-center fixed top-0 right-0 z-20 w-full h-full overflow-hidden transition-all duration-800 ${
-          isCartOpen ? "translate-x-0 delay-0" : "translate-x-full delay-500"
+        className={`flex justify-between items-center fixed top-0 right-0 z-20 w-full h-full overflow-hidden transition-all duration-700 ${
+          isCartOpen ? "translate-x-0 delay-0" : "translate-x-full delay-400"
         }`}
       >
         <div
-          className={`w-4/12 smr:w-full sx:w-full 2xl:w-4/12  h-full bg-black transition-all  duration-700 ${
-            isCartOpen ? "opacity-80 delay-700" : "opacity-0 delay-0"
+          className={`w-4/12 smr:w-full sx:w-full 2xl:w-4/12  h-full bg-black transition-all  duration-600 ${
+            isCartOpen ? "opacity-80 delay-600" : "opacity-0 delay-0"
           }`}
           onClick={clickCartNavFalse}
         ></div>

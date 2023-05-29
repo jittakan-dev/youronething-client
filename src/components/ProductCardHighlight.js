@@ -19,7 +19,7 @@ const ProductCardHighlight = ({
         const scrollTop =
           window.pageYOffset || document.documentElement.scrollTop;
         const cardOffsetTop = cardRef.current.offsetTop;
-        const parallaxOffset = (cardOffsetTop - scrollTop) * 0.5;
+        const parallaxOffset = (cardOffsetTop - scrollTop) * 0.8;
 
         cardRef.current.style.transform = `translateY(${parallaxOffset}px)`;
       }
@@ -37,10 +37,13 @@ const ProductCardHighlight = ({
     >
       <div className="absolute w-auto h-auto bottom-0 flex flex-col justify-end items-center ml-24">
         <div className="p-24 sx:p-10">
-          <span className="text-4xl sx:text-3xl">{title}</span>
+          <div className="flex flex-col">
+            <span className="text-4xl sx:text-3xl">{title}</span>
+
+            <span className="text-xl sx:text-lg">{title_description}</span>
+          </div>
           <br />
-          <br />
-          <span className="text-xl sx:text-lg">{title_description}</span>
+          <span className="text-xl sx:text-lg">{price} THB</span>
         </div>
       </div>
       {image_h && (

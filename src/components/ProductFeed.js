@@ -74,6 +74,7 @@ const ProductFeed = () => {
     : 0;
   return (
     <>
+      {/* BG-parallax */}
       <div className="h-full w-full top-0 bg-slate-700">
         {highlightedItems && highlightedItems.length > 0 ? (
           highlightedItems.map((item, index) => (

@@ -15,6 +15,7 @@ const Mockdata = [
     link: "link1",
     price: 100,
     highlight: false,
+    pop: 30,
   },
   {
     id: 2,
@@ -32,6 +33,7 @@ const Mockdata = [
     link: "link2",
     price: 200,
     highlight: false,
+    pop: 40,
   },
   {
     id: 3,
@@ -49,6 +51,7 @@ const Mockdata = [
     link: "link3",
     price: 300,
     highlight: false,
+    pop: 30,
   },
   {
     id: 4,
@@ -66,6 +69,7 @@ const Mockdata = [
     link: "link4",
     price: 400,
     highlight: false,
+    pop: 60,
   },
   {
     id: 5,
@@ -83,6 +87,7 @@ const Mockdata = [
     link: "link5",
     price: 500,
     highlight: false,
+    pop: 50,
   },
   {
     id: 6,
@@ -100,6 +105,7 @@ const Mockdata = [
     link: "link6",
     price: 600,
     highlight: false,
+    pop: 70,
   },
   {
     id: 7,
@@ -117,6 +123,7 @@ const Mockdata = [
     link: "link7",
     price: 700,
     highlight: false,
+    pop: 90,
   },
   {
     id: 8,
@@ -134,6 +141,7 @@ const Mockdata = [
     link: "link8",
     price: 800,
     highlight: false,
+    pop: 80,
   },
   {
     id: 9,
@@ -151,6 +159,7 @@ const Mockdata = [
     link: "link9",
     price: 900,
     highlight: false,
+    pop: 100,
   },
   {
     id: 10,
@@ -168,6 +177,7 @@ const Mockdata = [
     link: "link10",
     price: 900,
     highlight: true,
+    pop: 20,
   },
 ];
 
