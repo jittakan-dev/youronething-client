@@ -5,7 +5,8 @@ import Mockdata from "@data/Mockdata";
 const ProductCard = dynamic(() => import("./ProductCard"));
 const ProductCardHighlight = dynamic(() => import("./ProductCardHighlight"));
 
-const ProductCardList = ({ Mockdata, sort, order }) => {
+const ProductCardList = ({ Mockdata, sort, type, order }) => {
+  //console.log(sort + "--" + order + "--" + type);
   const numRows = Mockdata ? Math.ceil(Mockdata.length / 3) : 0;
   return (
     <div className="flex flex-wrap">
@@ -72,15 +73,20 @@ const ProductCardList = ({ Mockdata, sort, order }) => {
 const ProductFeed = () => {
   const [activeTab, setActiveTab] = useState("All");
 
-  const [selectedValue, setSelectedValue] = useState("OrderBy");
+  const [orderValue, setOrderValue] = useState("OrderBy");
+
+  const [typeValue, setTypeValue] = useState("SortByType");
 
   const handleClick = (tab) => {
     setActiveTab(tab);
   };
 
-  const handleSelectChange = (event) => {
-    setSelectedValue(event.target.value);
-    console.log(event.target.value);
+  const handleOrderChange = (event) => {
+    setOrderValue(event.target.value);
+  };
+
+  const handleTypeChange = (event) => {
+    setTypeValue(event.target.value);
   };
 
   const highlightedItems = Mockdata
@@ -119,7 +125,7 @@ const ProductFeed = () => {
         <div className="flex justify-start items-center w-full py-12 px-16 sx:p-0">
           <div className="flex justify-start items-center">
             <div
-              className={`p-6 m-2 border-2 rounded-md border-slate-600 bg-slate-200 cursor-pointer ${
+              className={`p-6 my-2 mr-3 border-2 rounded-md border-slate-600 bg-slate-200 cursor-pointer ${
                 activeTab === "All"
                   ? "bg-slate-700 border-slate-700 text-slate-100"
                   : "bg-slate-200"
@@ -128,18 +134,9 @@ const ProductFeed = () => {
             >
               All
             </div>
+
             <div
-              className={`p-6 m-2 border-2 rounded-md border-slate-600 bg-slate-200 cursor-pointer ${
-                activeTab === "Newest"
-                  ? "bg-slate-700 border-slate-700 text-slate-100"
-                  : "bg-slate-200"
-              }`}
-              onClick={() => handleClick("Newest")}
-            >
-              Newest
-            </div>
-            <div
-              className={`p-6 m-2 border-2 rounded-md border-slate-600 cursor-pointer ${
+              className={`p-6 my-2 mr-3 border-2 rounded-md border-slate-600 cursor-pointer ${
                 activeTab === "Popular"
                   ? "bg-slate-700  border-slate-700 text-slate-100"
                   : "bg-slate-200 border-slate-600"
@@ -148,6 +145,34 @@ const ProductFeed = () => {
             >
               Popular
             </div>
+            <div>
+              <select
+                name="typeValue"
+                id="typeValue"
+                className="p-6 rounded-md border-2 cursor-pointer border-slate-600"
+                value={typeValue}
+                onChange={handleTypeChange}
+              >
+                <option value="SortByType" className="p-2 text-xl">
+                  Sort By Type
+                </option>
+                <option value="ArtandDecoration" className="p-2 text-xl">
+                  Art and Decoration
+                </option>
+                <option value="ToyandHobbies" className="p-2 text-xl">
+                  Toy and Hobbies
+                </option>
+                <option value="Garden" className="p-2 text-xl">
+                  Garden
+                </option>
+                <option value="Consumable" className="p-2 text-xl">
+                  Consumable
+                </option>
+                <option value="Other" className="p-2 text-xl">
+                  Other
+                </option>
+              </select>
+            </div>
           </div>
           <div className="grow"></div>
           <div>
@@ -155,22 +180,22 @@ const ProductFeed = () => {
               name="order"
               id="order"
               className="p-6 rounded-md border-2 cursor-pointer border-slate-600"
-              value={selectedValue}
-              onChange={handleSelectChange}
+              value={orderValue}
+              onChange={handleOrderChange}
             >
-              <option value="OrderBy" className="p-2">
+              <option value="OrderBy" className="p-2 text-xl">
                 Order By
               </option>
-              <option value="LowestPrice" className="p-2">
+              <option value="LowestPrice" className="p-2 text-xl">
                 Lowest Price
               </option>
-              <option value="HightestPrice" className="p-2">
+              <option value="HightestPrice" className="p-2 text-xl">
                 Hightest Price
               </option>
-              <option value="OldestDate" className="p-2">
+              <option value="OldestDate" className="p-2 text-xl">
                 Oldest Date
               </option>
-              <option value="NewestDate" className="p-2">
+              <option value="NewestDate" className="p-2 text-xl">
                 Newest Date
               </option>
             </select>
@@ -180,7 +205,8 @@ const ProductFeed = () => {
           <ProductCardList
             Mockdata={Mockdata}
             sort={activeTab}
-            order={selectedValue}
+            type={typeValue}
+            order={orderValue}
           />
         </div>
       </div>

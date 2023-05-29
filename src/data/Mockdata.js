@@ -17,6 +17,7 @@ const Mockdata = [
     highlight: false,
     pop: 30,
     date: "2023-02-28",
+    type: "Apparel",
   },
   {
     id: 2,
@@ -36,6 +37,7 @@ const Mockdata = [
     highlight: false,
     pop: 40,
     date: "2023-02-02",
+    type: "ToyandHobbies",
   },
   {
     id: 3,
@@ -55,6 +57,7 @@ const Mockdata = [
     highlight: false,
     pop: 30,
     date: "2023-03-04",
+    type: "Apparel",
   },
   {
     id: 4,
@@ -74,6 +77,7 @@ const Mockdata = [
     highlight: false,
     pop: 60,
     date: "2023-03-28",
+    type: "ToyandHobbies",
   },
   {
     id: 5,
@@ -93,6 +97,7 @@ const Mockdata = [
     highlight: false,
     pop: 50,
     date: "2023-04-05",
+    type: "ToyandHobbies",
   },
   {
     id: 6,
@@ -112,6 +117,7 @@ const Mockdata = [
     highlight: false,
     pop: 70,
     date: "2023-04-19",
+    type: "Garden",
   },
   {
     id: 7,
@@ -131,6 +137,7 @@ const Mockdata = [
     highlight: false,
     pop: 90,
     date: "2023-05-05",
+    type: "Consumable",
   },
   {
     id: 8,
@@ -150,6 +157,7 @@ const Mockdata = [
     highlight: false,
     pop: 80,
     date: "2023-05-18",
+    type: "Garden",
   },
   {
     id: 9,
@@ -169,6 +177,7 @@ const Mockdata = [
     highlight: false,
     pop: 100,
     date: "2023-01-17",
+    type: "Garden",
   },
   {
     id: 10,
@@ -188,6 +197,7 @@ const Mockdata = [
     highlight: true,
     pop: 20,
     date: "2022-12-21",
+    type: "Other",
   },
 ];
 
