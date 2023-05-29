@@ -123,8 +123,18 @@ function Nav() {
         <div className="flex flex-col w-full h-full justify-center items-center px-20 overflow-hidden">
           <div className="h-full w-full justify-center items-center px-6 mb-20 overflow-y-scroll">
             <div className="flex justify-between items-center w-full h-fit py-6 text-xl border-b-2 border-slate-800">
-              <p className="text-2xl">Your order</p>
-              <div>{selectedItems.length}</div>
+              <div className="flex justify-center items-center text-2xl">
+                Your order
+              </div>
+              <div className="flex justify-center items-center py-2 px-4 rounded-xl bg-slate-700 text-slate-200">
+                <div>{selectedItems.length}</div>
+              </div>
+            </div>
+            <div
+              className="flex justify-end items-center w-full h-fit py-6 text-xl hover:text-red-700 cursor-pointer border-b-2 border-slate-800"
+              onClick={clickClearLocalStorage}
+            >
+              Clear All
             </div>
             <div className="flex flex-col justify-center items-center w-full h-fit py-6 text-xl">
               {selectedItems.map((item, index) => (
@@ -141,7 +151,7 @@ function Nav() {
                       width="0"
                       height="0"
                       sizes="100%"
-                      className="w-full h-auto object-cover border-2 border-slate-400 group-hover:border-slate-700"
+                      className="w-full h-auto object-cover border-2 rounded-lg border-slate-400 group-hover:border-slate-700"
                       placeholder="blur"
                       blurDataURL={"/web-images/blur.png"}
                     />
@@ -169,12 +179,12 @@ function Nav() {
               {showDelNotification && (
                 <div className="py-6">Product is deleted successfully!</div>
               )}
-              <div
+              {/* <div
                 className="flex justify-center items-center py-6 px-6 text-center text-white bg-slate-600 cursor-pointer"
                 onClick={clickClearLocalStorage}
               >
                 Clear All Products
-              </div>
+              </div> */}
             </div>
             <div className="flex justify-center items-center sticky bottom-0 w-full py-10 px-6 text-xl cursor-pointer invisible bg-slate-600 text-white">
               C

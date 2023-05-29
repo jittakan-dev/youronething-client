@@ -16,6 +16,7 @@ const Mockdata = [
     price: 100,
     highlight: false,
     pop: 30,
+    date: "2023-02-28",
   },
   {
     id: 2,
@@ -34,6 +35,7 @@ const Mockdata = [
     price: 200,
     highlight: false,
     pop: 40,
+    date: "2023-02-02",
   },
   {
     id: 3,
@@ -52,6 +54,7 @@ const Mockdata = [
     price: 300,
     highlight: false,
     pop: 30,
+    date: "2023-03-04",
   },
   {
     id: 4,
@@ -70,6 +73,7 @@ const Mockdata = [
     price: 400,
     highlight: false,
     pop: 60,
+    date: "2023-03-28",
   },
   {
     id: 5,
@@ -88,6 +92,7 @@ const Mockdata = [
     price: 500,
     highlight: false,
     pop: 50,
+    date: "2023-04-05",
   },
   {
     id: 6,
@@ -106,6 +111,7 @@ const Mockdata = [
     price: 600,
     highlight: false,
     pop: 70,
+    date: "2023-04-19",
   },
   {
     id: 7,
@@ -124,6 +130,7 @@ const Mockdata = [
     price: 700,
     highlight: false,
     pop: 90,
+    date: "2023-05-05",
   },
   {
     id: 8,
@@ -142,6 +149,7 @@ const Mockdata = [
     price: 800,
     highlight: false,
     pop: 80,
+    date: "2023-05-18",
   },
   {
     id: 9,
@@ -160,6 +168,7 @@ const Mockdata = [
     price: 900,
     highlight: false,
     pop: 100,
+    date: "2023-01-17",
   },
   {
     id: 10,
@@ -178,6 +187,7 @@ const Mockdata = [
     price: 900,
     highlight: true,
     pop: 20,
+    date: "2022-12-21",
   },
 ];
 
