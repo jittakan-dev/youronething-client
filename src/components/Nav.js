@@ -7,7 +7,6 @@ import { ProductIdContext } from "../app/ProductIdContext";
 function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [localStorageProductId, setLocalStorageProductId] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
   const [showDelNotification, setShowDelNotification] = useState(false);
   const { productId, setProductId } = useContext(ProductIdContext);
@@ -17,7 +16,6 @@ function Nav() {
       console.error("Selected IDs cannot be null or undefined.");
       return;
     }
-
     const selectedItemsArray = selectedIds.map((selectedId) => {
       const selectedItem = Mockdata.find((item) => item.id === selectedId);
       if (!selectedItem) {
@@ -25,21 +23,18 @@ function Nav() {
       }
       return selectedItem;
     });
-    setSelectedItems(selectedItemsArray);
+    setSelectedItems(selectedItemsArray.reverse());
   };
 
   const refreshSelectedProductIds = useCallback(() => {
     try {
       const refreshProductId = JSON.parse(localStorage.getItem("productId"));
       if (refreshProductId && Array.isArray(refreshProductId)) {
-        setLocalStorageProductId(refreshProductId);
         handleItemSelection(refreshProductId);
       } else {
-        setLocalStorageProductId([]);
       }
     } catch (error) {
       console.error("Error while parsing productIds from localStorage:", error);
-      setLocalStorageProductId([]);
     }
   }, []);
 
@@ -52,16 +47,15 @@ function Nav() {
 
         localStorage.setItem("productId", JSON.stringify(storedArray));
 
-        setLocalStorageProductId(storedArray);
         setShowDelNotification(true);
         productId > 0 ? setProductId(productId - 1) : setProductId(0);
+        refreshSelectedProductIds();
         setTimeout(() => {
           setShowDelNotification(false);
         }, 1000);
       } catch (error) {
         console.error("Error deleting product ID:", error);
       }
-      refreshSelectedProductIds();
     },
     [refreshSelectedProductIds, setProductId, productId]
   );
@@ -88,7 +82,6 @@ function Nav() {
   const clickClearLocalStorage = useCallback(() => {
     try {
       localStorage.removeItem("productId");
-      setLocalStorageProductId([]);
       handleItemSelection([]);
       setProductId(0);
     } catch (error) {
@@ -102,7 +95,6 @@ function Nav() {
     const arrayValue = JSON.parse(localStorage.getItem("productId"));
     localStorage.setItem("productId", JSON.stringify(arrayValue));
     const memberCount = Array.isArray(arrayValue) ? arrayValue.length : 0;
-
     setProductId(memberCount);
   }, [refreshSelectedProductIds, setProductId]);
 
@@ -138,13 +130,14 @@ function Nav() {
             </div>
             <div className="flex flex-col justify-center items-center w-full h-fit py-6 text-xl">
               {selectedItems.map((item, index) => (
-                <Link
-                  href={"/product/" + item.id}
+                <div
                   key={index}
                   className="group flex justify-between w-full border-b-2 border-slate-800 pb-4 mb-4"
-                  onClick={clickCartNavFalse}
                 >
-                  <div>
+                  <Link
+                    href={"/product/" + item.id}
+                    onClick={clickCartNavFalse}
+                  >
                     <Image
                       src={"/product-images/" + item.image_c}
                       alt=""
@@ -155,7 +148,7 @@ function Nav() {
                       placeholder="blur"
                       blurDataURL={"/web-images/blur.png"}
                     />
-                  </div>
+                  </Link>
                   <div className="flex flex-col justify-start items-start">
                     <div>
                       <div className="text-xl font-semibold">
@@ -174,17 +167,11 @@ function Nav() {
                       Remove
                     </div>
                   </div>
-                </Link>
+                </div>
               ))}
               {showDelNotification && (
                 <div className="py-6">Product is deleted successfully!</div>
               )}
-              {/* <div
-                className="flex justify-center items-center py-6 px-6 text-center text-white bg-slate-600 cursor-pointer"
-                onClick={clickClearLocalStorage}
-              >
-                Clear All Products
-              </div> */}
             </div>
             <div className="flex justify-center items-center sticky bottom-0 w-full py-10 px-6 text-xl cursor-pointer invisible bg-slate-600 text-white">
               C
