@@ -45,6 +45,20 @@ const Page = ({ params: { productId } }) => {
     setProductId(memberCount);
   }, [fetchAndSetData, setProductId]);
 
+  const [expandedImgSrc, setExpandedImgSrc] = useState("");
+  const [imgText, setImgText] = useState("");
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const myFunction = (imgs) => {
+    setExpandedImgSrc(imgs.src);
+    setImgText(imgs.alt);
+    setIsExpanded(true);
+  };
+
+  const closeExpandedImage = () => {
+    setIsExpanded(false);
+  };
+
   return (
     <div className="flex flex-row sx:flex-col-reverse">
       <div className="fixed sx:relative z-10 w-1/2 sx:w-full h-screen max-h-screen">
@@ -72,8 +86,8 @@ const Page = ({ params: { productId } }) => {
       </div>
       <div className="relative flex sx:flex-col 2xl:flex-row justify-center items-center h-full w-full">
         <div className="w-1/2 sx:w-full h-auto bg-green-700"></div>
-        <div className="flex flex-col justify-center items-center w-1/2 sx:w-full h-auto">
-          <div className="min-h-screen sx:min-h-fit h-auto w-full mb-4 sx:mb-2">
+        <div className="flex flex-col justify-start items-start w-1/2 sx:w-full h-auto">
+          <div className="h-auto w-full mb-4 sx:mb-2">
             {product.image_1 && (
               <Image
                 src={"/product-images/" + product.image_1}
@@ -87,7 +101,7 @@ const Page = ({ params: { productId } }) => {
               />
             )}
           </div>
-          <div className="min-h-screen sx:min-h-fit h-auto w-full mb-4 sx:mb-2">
+          <div className="h-auto w-full mb-4 sx:mb-2">
             {product.image_2 && (
               <Image
                 src={"/product-images/" + product.image_2}
@@ -101,7 +115,7 @@ const Page = ({ params: { productId } }) => {
               />
             )}
           </div>
-          <div className="min-h-screen sx:min-h-fit h-auto w-full mb-4 sx:mb-2">
+          <div className="h-auto w-full mb-4 sx:mb-2">
             {product.image_3 && (
               <Image
                 src={"/product-images/" + product.image_3}
@@ -115,7 +129,7 @@ const Page = ({ params: { productId } }) => {
               />
             )}
           </div>
-          <div className="min-h-screen sx:min-h-fit h-auto w-full">
+          <div className="h-auto w-full">
             {product.image_4 && (
               <Image
                 src={"/product-images/" + product.image_4}
@@ -127,7 +141,7 @@ const Page = ({ params: { productId } }) => {
                 placeholder="blur"
                 blurDataURL={"/web-images/blur.png"}
               />
-            )}{" "}
+            )}
           </div>
         </div>
       </div>

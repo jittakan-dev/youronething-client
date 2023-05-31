@@ -35,20 +35,20 @@ const ProductCard = ({
         <div className="flex flex-row justify-center items-center w-full">
           <div className="flex flex-col justify-center items-start">
             <div className="text-left text-lg">{title}</div>
-            <div className="text-left text-base font-normal">
+            <div className="text-left text-base font-normal">{type}</div>
+            {/* <div className="text-left text-base font-normal">
               {title_description}
-            </div>
+            </div> */}
           </div>
           <div className="grow"></div>
           <div className="text-left">{price} THB</div>
         </div>
+
         <div className="flex flex-row justify-end items-center w-full font-normal mt-2 pt-2 border-t-2 border-slate-700">
           <div className="text-left">Pop : {pop}</div>
         </div>
         <div className="flex flex-row justify-center items-center w-full  font-normal">
-          <div className="flex flex-col justify-center items-start">
-            <div className="text-left">{type}</div>
-          </div>
+          <div className="flex flex-col justify-start items-start"></div>
           <div className="grow"></div>
           <div className="text-left">Date : {date}</div>
         </div>

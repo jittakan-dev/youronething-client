@@ -9,9 +9,7 @@ module.exports = {
     extend: {
       backgroundImage: {},
       screens: {
-        sz: { min: "260px", max: "319px" },
-
-        sx: { min: "320px", max: "479px" },
+        sx: { max: "479px" },
 
         smr: { min: "479px", max: "639px" }, //TRANSFORM 1 with  Mobile
 

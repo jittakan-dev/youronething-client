@@ -53,7 +53,7 @@ const ProductCardHighlight = ({
           width="0"
           height="0"
           sizes="100vw"
-          className="w-full h-auto object-cover"
+          className="w-full h-auto object-fill"
           placeholder="blur"
           blurDataURL={"/web-images/blur.png"}
         />

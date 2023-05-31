@@ -4,6 +4,34 @@ import Image from "next/image";
 import Mockdata from "@data/Mockdata";
 import { useState, useCallback, useEffect, useContext } from "react";
 import { ProductIdContext } from "../app/ProductIdContext";
+// function getCurrentBreakpoint(width, height) {
+//   if (width >= 260 && width <= 319) {
+//     return "sz";
+//   } else if (width >= 320 && width <= 479) {
+//     return "sx";
+//   } else if (width >= 479 && width <= 639) {
+//     return "smr";
+//   } else if (width >= 639 && width <= 767) {
+//     return "sm";
+//   } else if (width >= 767 && width <= 1023 && height < 768) {
+//     return "md";
+//   } else if (width >= 767 && width <= 1023 && height >= 768 && height <= 1370) {
+//     return "mdh";
+//   } else if (width >= 1023 && width <= 1279 && height < 768) {
+//     return "lg";
+//   } else if (
+//     width >= 1023 &&
+//     width <= 1279 &&
+//     height >= 768 &&
+//     height <= 1370
+//   ) {
+//     return "lgh";
+//   } else if (width >= 1280 && width <= 1535) {
+//     return "xl";
+//   } else {
+//     return "2xl";
+//   }
+// }
 function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -90,19 +118,37 @@ function Nav() {
     refreshSelectedProductIds();
   }, [refreshSelectedProductIds, setProductId]);
 
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
   useEffect(() => {
     refreshSelectedProductIds();
     const arrayValue = JSON.parse(localStorage.getItem("productId"));
     localStorage.setItem("productId", JSON.stringify(arrayValue));
     const memberCount = Array.isArray(arrayValue) ? arrayValue.length : 0;
     setProductId(memberCount);
+
+    // const handleResize = () => {
+    //   setWindowSize({
+    //     width: window.innerWidth,
+    //     height: window.innerHeight,
+    //   });
+    // };
+
+    // window.addEventListener("resize", handleResize);
+
+    // return () => {
+    //   window.removeEventListener("resize", handleResize);
+    // };
   }, [refreshSelectedProductIds, setProductId]);
 
   return (
     <>
       {/* Cart */}
       <div
-        className={`fixed top-0 right-0 z-50 w-2/3 sx:w-full h-full overflow-hidden transition-all duration-800 bg-slate-400 ${
+        className={`fixed top-0 right-0 z-50 w-7/12 sx:w-full smr:w-full sm:w-7/12 md:2xl:w-7/12 lg:w-7/12 xl:w-7/12 2xl:w-7/12 h-full overflow-hidden transition-all duration-800 bg-slate-400 ${
           isCartOpen ? "translate-x-0 delay-0" : "translate-x-full delay-500"
         }`}
       >
@@ -112,7 +158,7 @@ function Nav() {
         >
           X
         </div>
-        <div className="flex flex-col w-full h-full justify-center items-center px-20 overflow-hidden">
+        <div className="flex flex-col w-full h-full justify-center items-center px-20 sx:px-4 smr:px-2 sm:px-10 md:px-16 lg:px-20 xl:px-20 2xl:px-20 overflow-hidden">
           <div className="h-full w-full justify-center items-center px-6 mb-20 overflow-y-scroll">
             <div className="flex justify-between items-center w-full h-fit py-6 text-xl border-b-2 border-slate-800">
               <div className="flex justify-center items-center text-2xl">
@@ -190,7 +236,7 @@ function Nav() {
         }`}
       >
         <div
-          className={`w-4/12 smr:w-full sx:w-full 2xl:w-4/12  h-full bg-black transition-all  duration-600 ${
+          className={`w-5/12 sx:w-0 smr:w-0 sm:w-5/12 md:w-5/12 lg:w-5/12 xl:w-5/12 2xl:w-5/12 h-full bg-black transition-all  duration-600 ${
             isCartOpen ? "opacity-80 delay-600" : "opacity-0 delay-0"
           }`}
           onClick={clickCartNavFalse}
@@ -200,15 +246,23 @@ function Nav() {
       {/* NavBar */}
       <div className="flex w-full justify-center fixed z-30 top-0 right-0 items-center py-6 px-8 bg-white bg-opacity-20">
         <div className="flex-grow flex flex-col justify-center items-start text-2xl font-semibold">
-          <Link href="/">YourOneThing</Link>
+          <Link href="/">Y1T</Link>
+          {/* <div className="text-sm">
+            {getCurrentBreakpoint(window.innerWidth, window.innerHeight) +
+              " Width-" +
+              window.innerWidth +
+              "-Height-" +
+              window.innerHeight}
+          </div> */}
         </div>
+
         <div
-          className="flex-none cursor-pointer text-xl px-10"
+          className="flex-none cursor-pointer text-xl sx:text-base smr:text-lg sm:text-lg md:text-xl lg:text-xl xl:text-xl 2xl:text-xl px-10 sx:px-4 smr:px-4 sm:px-4 md:px-10 lg:px-10 xl:px-10 2xl:px-10"
           onClick={clickCartNav}
         >
-          Cart({productId ? productId : 0}){/* Cart ({selectedItems.length}) */}
+          Cart({productId ? productId : 0})
         </div>
-        <div className="flex-none relative px-3">
+        <div className="flex-none relative px-3 sx:px-2 smr:px-2 sm:px-2 md:px-3 lg:px-3 xl:px-3 2xl:px-3">
           <div
             className={`menu-toggle flex flex-col justify-center items-center w-7 h-auto cursor-pointer ${
               isOpen ? "open" : ""
@@ -236,15 +290,15 @@ function Nav() {
         }`}
       >
         <div
-          className={`w-4/12 smr:w-full sx:w-0 2xl:w-4/12  h-full bg-black transition-all  duration-700 ${
+          className={`w-5/12 sx:w-0 smr:w-0 sm:w-5/12 md:w-5/12 lg:w-5/12 xl:w-5/12 2xl:w-5/12 h-full bg-black transition-all  duration-700 ${
             isOpen ? "opacity-80 delay-700" : "opacity-0 delay-0"
           }`}
           onClick={clickNavFalse}
         ></div>
         <div
-          className={`w-8/12 smr:w-full sx:w-full 2xl:w-8/12 h-full text-slate-400 bg-frontColor`}
+          className={`w-7/12 sx:w-full smr:w-full sm:w-7/12 md:2xl:w-7/12 lg:w-7/12 xl:w-7/12 2xl:w-7/12 h-full text-slate-400 bg-frontColor`}
         >
-          <div className="flex pl-28 sticky top-1/4 text-3xl">
+          <div className="flex pl-28 sx:p-20 smr:p-28 sm:pl-16 md:pl-20 lg:pl-28 xl:pl-28 2xl:pl-28 sticky top-1/4 text-3xl">
             <div className="flex flex-col justify-center items-start">
               <li className="hover-underline py-3 cursor-pointer">
                 <Link href="/" onClick={clickNav}>
