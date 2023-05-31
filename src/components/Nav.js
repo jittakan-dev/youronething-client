@@ -118,10 +118,10 @@ function Nav() {
     refreshSelectedProductIds();
   }, [refreshSelectedProductIds, setProductId]);
 
-  const [windowSize, setWindowSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
+  // const [windowSize, setWindowSize] = useState({
+  //   width: window.innerWidth,
+  //   height: window.innerHeight,
+  // });
 
   useEffect(() => {
     refreshSelectedProductIds();
