@@ -1,6 +1,8 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { ProductIdProvider } from "./ProductIdContext";
+import { Suspense } from "react";
+import Loading from "./loading";
 import Nav from "@components/Nav";
 import Footer from "@components/Footer";
 const inter = Inter({ subsets: ["latin"] });
@@ -16,7 +18,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <ProductIdProvider>
           <Nav />
-          {children}
+          <Suspense fallback={<Loading />}>{children}</Suspense>
           <Footer />
         </ProductIdProvider>
       </body>

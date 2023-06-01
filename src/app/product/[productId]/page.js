@@ -8,6 +8,7 @@ const Page = ({ params: { productId } }) => {
   const [product, setProduct] = useState([]);
   const [showNotification, setShowNotification] = useState(false);
   const { setProductId } = useContext(ProductIdContext);
+  const [loading, setLoading] = useState(false);
 
   const addProductId = (productId) => {
     try {
@@ -31,9 +32,12 @@ const Page = ({ params: { productId } }) => {
 
   const fetchAndSetData = useCallback(async () => {
     try {
+      setLoading(true);
       setProduct(Mockdata[productId - 1]);
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   }, [productId]);
 
@@ -87,62 +91,68 @@ const Page = ({ params: { productId } }) => {
       <div className="relative flex sx:flex-col 2xl:flex-row justify-center items-center h-full w-full">
         <div className="w-1/2 sx:w-full h-auto bg-green-700"></div>
         <div className="flex flex-col justify-start items-start w-1/2 sx:w-full h-auto">
-          <div className="h-auto w-full mb-4 sx:mb-2">
-            {product.image_1 && (
-              <Image
-                src={"/product-images/" + product.image_1}
-                alt=""
-                width="0"
-                height="0"
-                sizes="100vw"
-                className="w-full h-auto object-cover"
-                placeholder="blur"
-                blurDataURL={"/web-images/blur.png"}
-              />
-            )}
-          </div>
-          <div className="h-auto w-full mb-4 sx:mb-2">
-            {product.image_2 && (
-              <Image
-                src={"/product-images/" + product.image_2}
-                alt=""
-                width="0"
-                height="0"
-                sizes="100vw"
-                className="w-full h-auto object-cover"
-                placeholder="blur"
-                blurDataURL={"/web-images/blur.png"}
-              />
-            )}
-          </div>
-          <div className="h-auto w-full mb-4 sx:mb-2">
-            {product.image_3 && (
-              <Image
-                src={"/product-images/" + product.image_3}
-                alt=""
-                width="0"
-                height="0"
-                sizes="100vw"
-                className="w-full h-auto object-cover"
-                placeholder="blur"
-                blurDataURL={"/web-images/blur.png"}
-              />
-            )}
-          </div>
-          <div className="h-auto w-full">
-            {product.image_4 && (
-              <Image
-                src={"/product-images/" + product.image_4}
-                alt=""
-                width="0"
-                height="0"
-                sizes="100vw"
-                className="w-full h-auto object-cover"
-                placeholder="blur"
-                blurDataURL={"/web-images/blur.png"}
-              />
-            )}
-          </div>
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            <div className="w-auto h-auto">
+              <div className="h-auto w-full mb-4 sx:mb-2">
+                {product.image_1 && (
+                  <Image
+                    src={"/product-images/" + product.image_1}
+                    alt=""
+                    width="0"
+                    height="0"
+                    sizes="100vw"
+                    className="w-full h-auto object-cover"
+                    placeholder="blur"
+                    blurDataURL={"/web-images/blur.png"}
+                  />
+                )}
+              </div>
+              <div className="h-auto w-full mb-4 sx:mb-2">
+                {product.image_2 && (
+                  <Image
+                    src={"/product-images/" + product.image_2}
+                    alt=""
+                    width="0"
+                    height="0"
+                    sizes="100vw"
+                    className="w-full h-auto object-cover"
+                    placeholder="blur"
+                    blurDataURL={"/web-images/blur.png"}
+                  />
+                )}
+              </div>
+              <div className="h-auto w-full mb-4 sx:mb-2">
+                {product.image_3 && (
+                  <Image
+                    src={"/product-images/" + product.image_3}
+                    alt=""
+                    width="0"
+                    height="0"
+                    sizes="100vw"
+                    className="w-full h-auto object-cover"
+                    placeholder="blur"
+                    blurDataURL={"/web-images/blur.png"}
+                  />
+                )}
+              </div>
+              <div className="h-auto w-full">
+                {product.image_4 && (
+                  <Image
+                    src={"/product-images/" + product.image_4}
+                    alt=""
+                    width="0"
+                    height="0"
+                    sizes="100vw"
+                    className="w-full h-auto object-cover"
+                    placeholder="blur"
+                    blurDataURL={"/web-images/blur.png"}
+                  />
+                )}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

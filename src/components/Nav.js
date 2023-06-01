@@ -213,7 +213,7 @@ function Nav() {
       >
         <div
           className={`w-5/12 sx:w-0 smr:w-0 sm:w-5/12 md:w-5/12 lg:w-5/12 xl:w-5/12 2xl:w-5/12 h-full bg-black transition-all  duration-600 ${
-            isCartOpen ? "opacity-80 delay-600" : "opacity-0 delay-0"
+            isCartOpen ? "opacity-90 delay-600" : "opacity-0 delay-0"
           }`}
           onClick={clickCartNavFalse}
         ></div>
@@ -223,7 +223,7 @@ function Nav() {
       <div
         className={`flex w-full justify-center fixed z-30 top-0 right-0 items-center py-6 px-8 ${
           isScrollOverHeight
-            ? "bg-slate-700 text-white"
+            ? "bg-slate-700 bg-opacity-90 text-white"
             : "bg-slate-400 bg-opacity-20 "
         }`}
       >
@@ -282,7 +282,7 @@ function Nav() {
       >
         <div
           className={`w-5/12 sx:w-0 smr:w-0 sm:w-5/12 md:w-5/12 lg:w-5/12 xl:w-5/12 2xl:w-5/12 h-full bg-black transition-all  duration-700 ${
-            isOpen ? "opacity-80 delay-700" : "opacity-0 delay-0"
+            isOpen ? "opacity-90 delay-700" : "opacity-0 delay-0"
           }`}
           onClick={clickNavFalse}
         ></div>
