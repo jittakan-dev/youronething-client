@@ -4,34 +4,7 @@ import Image from "next/image";
 import Mockdata from "@data/Mockdata";
 import { useState, useCallback, useEffect, useContext } from "react";
 import { ProductIdContext } from "../app/ProductIdContext";
-// function getCurrentBreakpoint(width, height) {
-//   if (width >= 260 && width <= 319) {
-//     return "sz";
-//   } else if (width >= 320 && width <= 479) {
-//     return "sx";
-//   } else if (width >= 479 && width <= 639) {
-//     return "smr";
-//   } else if (width >= 639 && width <= 767) {
-//     return "sm";
-//   } else if (width >= 767 && width <= 1023 && height < 768) {
-//     return "md";
-//   } else if (width >= 767 && width <= 1023 && height >= 768 && height <= 1370) {
-//     return "mdh";
-//   } else if (width >= 1023 && width <= 1279 && height < 768) {
-//     return "lg";
-//   } else if (
-//     width >= 1023 &&
-//     width <= 1279 &&
-//     height >= 768 &&
-//     height <= 1370
-//   ) {
-//     return "lgh";
-//   } else if (width >= 1280 && width <= 1535) {
-//     return "xl";
-//   } else {
-//     return "2xl";
-//   }
-// }
+
 function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -70,11 +43,8 @@ function Nav() {
     (index) => {
       try {
         let storedArray = JSON.parse(localStorage.getItem("productId")) || [];
-
         storedArray.splice(index, 1);
-
         localStorage.setItem("productId", JSON.stringify(storedArray));
-
         setShowDelNotification(true);
         productId > 0 ? setProductId(productId - 1) : setProductId(0);
         refreshSelectedProductIds();
@@ -118,31 +88,37 @@ function Nav() {
     refreshSelectedProductIds();
   }, [refreshSelectedProductIds, setProductId]);
 
-  // const [windowSize, setWindowSize] = useState({
-  //   width: window.innerWidth,
-  //   height: window.innerHeight,
-  // });
-
   useEffect(() => {
     refreshSelectedProductIds();
     const arrayValue = JSON.parse(localStorage.getItem("productId"));
     localStorage.setItem("productId", JSON.stringify(arrayValue));
     const memberCount = Array.isArray(arrayValue) ? arrayValue.length : 0;
     setProductId(memberCount);
-
-    // const handleResize = () => {
-    //   setWindowSize({
-    //     width: window.innerWidth,
-    //     height: window.innerHeight,
-    //   });
-    // };
-
-    // window.addEventListener("resize", handleResize);
-
-    // return () => {
-    //   window.removeEventListener("resize", handleResize);
-    // };
   }, [refreshSelectedProductIds, setProductId]);
+
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [isScrollOverHeight, setIsScrollOverHeight] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const position = window.pageYOffset;
+      setScrollPosition(position);
+    };
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", handleScroll);
+
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsScrollOverHeight(scrollPosition > window.innerHeight);
+    }
+  }, [scrollPosition]);
 
   return (
     <>
@@ -244,20 +220,23 @@ function Nav() {
       </div>
       {/* silhouette*/}
       {/* NavBar */}
-      <div className="flex w-full justify-center fixed z-30 top-0 right-0 items-center py-6 px-8 bg-white bg-opacity-20">
+      <div
+        className={`flex w-full justify-center fixed z-30 top-0 right-0 items-center py-6 px-8 ${
+          isScrollOverHeight
+            ? "bg-slate-700 text-white"
+            : "bg-slate-400 bg-opacity-20 "
+        }`}
+      >
         <div className="flex-grow flex flex-col justify-center items-start text-2xl font-semibold">
           <Link href="/">Y1T</Link>
-          {/* <div className="text-sm">
-            {getCurrentBreakpoint(window.innerWidth, window.innerHeight) +
-              " Width-" +
-              window.innerWidth +
-              "-Height-" +
-              window.innerHeight}
-          </div> */}
+          {/* <p
+            className={`text-base ${isScrollOverHeight ? "text-red-500" : ""}`}
+          >
+            Scroll position: {scrollPosition}
+          </p> */}
         </div>
-
         <div
-          className="flex-none cursor-pointer text-xl sx:text-base smr:text-lg sm:text-lg md:text-xl lg:text-xl xl:text-xl 2xl:text-xl px-10 sx:px-4 smr:px-4 sm:px-4 md:px-10 lg:px-10 xl:px-10 2xl:px-10"
+          className="flex-none cursor-pointer text-xl sx:text-xl smr:text-lg sm:text-lg md:text-xl lg:text-xl xl:text-xl 2xl:text-xl px-10 sx:px-4 smr:px-4 sm:px-4 md:px-10 lg:px-10 xl:px-10 2xl:px-10"
           onClick={clickCartNav}
         >
           Cart({productId ? productId : 0})
@@ -271,12 +250,24 @@ function Nav() {
           >
             <span
               className={`bar w-full h-1 mb-2 ${
-                isOpen ? "bg-slate-300" : "bg-fontfrontColor"
+                isScrollOverHeight
+                  ? isOpen
+                    ? "bg-fontfrontColor"
+                    : "bg-slate-300"
+                  : isOpen
+                  ? "bg-slate-300"
+                  : "bg-fontfrontColor"
               }`}
             ></span>
             <span
               className={`bar w-full h-1 ${
-                isOpen ? "bg-slate-300" : "bg-fontfrontColor"
+                isScrollOverHeight
+                  ? isOpen
+                    ? "bg-slate-300"
+                    : "bg-slate-300"
+                  : isOpen
+                  ? "bg-slate-300"
+                  : "bg-fontfrontColor"
               }`}
             ></span>
           </div>

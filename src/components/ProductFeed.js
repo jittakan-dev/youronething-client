@@ -33,7 +33,7 @@ function getCurrentBreakpoint(width, height) {
   }
 }
 const ProductCardList = ({ Mockdata, sort, type, order }) => {
-  console.log(sort + "--" + type + "--" + order);
+  // console.log(sort + "--" + type + "--" + order);
   let filteredData = [...Mockdata];
 
   if (sort === "All") {
@@ -72,14 +72,8 @@ const ProductCardList = ({ Mockdata, sort, type, order }) => {
       const breakpoint = getCurrentBreakpoint(innerWidth, innerHeight);
       setCurrentBreakpoint(breakpoint);
     };
-
-    // Run the initial update
     updateBreakpoint();
-
-    // Add event listener to update breakpoint on window resize
     window.addEventListener("resize", updateBreakpoint);
-
-    // Cleanup the event listener on component unmount
     return () => {
       window.removeEventListener("resize", updateBreakpoint);
     };
@@ -173,10 +167,9 @@ const ProductCardList = ({ Mockdata, sort, type, order }) => {
 
 const ProductFeed = () => {
   const [sortTab, setSortTab] = useState("All");
-
   const [orderValue, setOrderValue] = useState("OrderBy");
-
   const [typeValue, setTypeValue] = useState("SortByType");
+  const [currentBreakpoint, setCurrentBreakpoint] = useState("");
 
   const handleClick = (tab) => {
     if (tab === "All") {
@@ -198,6 +191,19 @@ const ProductFeed = () => {
   const highlightedItems = Mockdata
     ? Mockdata.filter((item) => item.highlight === true)
     : 0;
+
+  useEffect(() => {
+    const updateBreakpoint = () => {
+      const { innerWidth, innerHeight } = window;
+      const breakpoint = getCurrentBreakpoint(innerWidth, innerHeight);
+      setCurrentBreakpoint(breakpoint);
+    };
+    updateBreakpoint();
+    window.addEventListener("resize", updateBreakpoint);
+    return () => {
+      window.removeEventListener("resize", updateBreakpoint);
+    };
+  }, []);
   return (
     <>
       {/* BG-parallax */}
@@ -212,6 +218,7 @@ const ProductFeed = () => {
                   title_description={item.title_description}
                   full_description={item.full_description}
                   image_t={item.image_t}
+                  image_p={item.image_p}
                   image_1={item.image_1}
                   image_2={item.image_2}
                   image_3={item.image_3}
@@ -219,6 +226,7 @@ const ProductFeed = () => {
                   image_h={item.image_h}
                   link={item.link}
                   price={item.price}
+                  viewport={currentBreakpoint}
                 />
               )}
             </div>

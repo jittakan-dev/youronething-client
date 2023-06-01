@@ -8,8 +8,10 @@ const ProductCardHighlight = ({
   id,
   title,
   title_description,
+  image_p,
   image_h,
   price,
+  viewport,
 }) => {
   const cardRef = useRef(null);
 
@@ -28,14 +30,25 @@ const ProductCardHighlight = ({
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
+  const getDynamicImageSrc = () => {
+    let dynamicSrc = "/product-images/" + image_h;
+    if (
+      viewport === "md" ||
+      viewport === "sm" ||
+      viewport === "smr" ||
+      viewport === "sx"
+    ) {
+      dynamicSrc = "/product-images/" + image_p;
+    }
+    return dynamicSrc;
+  };
   return (
     <Link
       href={`/product/${id}`}
       className="flex flex-col justify-center items-center w-full h-screen max-h-screen cursor-pointer"
       ref={cardRef}
     >
-      <div className="absolute w-auto h-auto bottom-0 flex flex-col justify-end items-center ml-24">
+      <div className="absolute w-auto h-auto bottom-0 flex flex-col justify-end items-center ml-24 z-20">
         <div className="p-24 sx:p-10">
           <div className="flex flex-col">
             <span className="text-4xl sx:text-3xl">{title}</span>
@@ -46,18 +59,20 @@ const ProductCardHighlight = ({
           <span className="text-xl sx:text-lg">{price} THB</span>
         </div>
       </div>
-      {image_h && (
-        <Image
-          src={"/product-images/" + image_h}
-          alt=""
-          width="0"
-          height="0"
-          sizes="100vw"
-          className="w-full h-auto object-fill"
-          placeholder="blur"
-          blurDataURL={"/web-images/blur.png"}
-        />
-      )}
+      <div className="h-auto w-full">
+        {image_h && (
+          <Image
+            src={getDynamicImageSrc()}
+            alt=""
+            sizes="100vw"
+            className="w-full h-auto"
+            placeholder="blur"
+            fill="true"
+            blurDataURL={"/web-images/blur.png"}
+            style={{ objectFit: "cover" }}
+          />
+        )}
+      </div>
     </Link>
   );
 };
