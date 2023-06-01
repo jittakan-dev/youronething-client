@@ -64,7 +64,7 @@ const Page = ({ params: { productId } }) => {
   };
 
   return (
-    <div className="flex flex-row sx:flex-col-reverse h-auto min-h-screen">
+    <div className="flex flex-row sx:flex-col-reverse min-h-screen h-auto">
       <div className="fixed sx:relative z-10 w-1/2 sx:w-full h-screen max-h-screen">
         <div className="flex flex-col justify-start items-start w-full h-full pt-24 p-10">
           <div className="text-3xl font-bold mb-6">{product.title}</div>
@@ -92,7 +92,9 @@ const Page = ({ params: { productId } }) => {
         <div className="w-1/2 sx:w-full h-auto"></div>
         <div className="flex flex-col justify-start items-start w-1/2 sx:w-full h-auto">
           {loading ? (
-            <p>Loading...</p>
+            <div className="w-full h-screen flex flex-col justify-center items-center">
+              <p>Loading...</p>
+            </div>
           ) : (
             <div className="w-auto h-auto">
               <div className="h-auto w-full mb-4 sx:mb-2">

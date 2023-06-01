@@ -207,7 +207,7 @@ const ProductFeed = () => {
   return (
     <>
       {/* BG-parallax */}
-      <div className="h-full w-full top-0 bg-tacao">
+      <div className="h-full w-full top-0 bg-aloeCream">
         {highlightedItems && highlightedItems.length > 0 ? (
           highlightedItems.map((item, index) => (
             <div key={index} className="w-full">
@@ -235,6 +235,7 @@ const ProductFeed = () => {
           <div>No highlighted items found.</div>
         )}
       </div>
+      {/* Feed */}
       <div className="flex flex-col justify-center items-center w-full h-auto">
         <div className="flex justify-start items-center w-full py-12 sx:py-4 smr:py-4 sm:py-8 md:py-12 lg:py-12 xl:py-12 2xl:py-12 px-12 sx:px-4 smr:px-4 sm:px-6 md:px-12 lg:px-12 xl:px-12 2xl:px-12">
           <div className="flex justify-start items-center sx:items-start smr:items-center sm:items-center md:items-center lg:items-center xl:items-center 2xl:items-center w-full">
@@ -297,6 +298,7 @@ const ProductFeed = () => {
           />
         </div>
       </div>
+      {/* Feed */}
     </>
   );
 };
