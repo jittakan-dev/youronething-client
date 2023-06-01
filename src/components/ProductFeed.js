@@ -261,8 +261,8 @@ const ProductFeed = () => {
                 >
                   <option value="SortByType">Sort By Type</option>
                   <option value="Apparel">Apparel</option>
-                  <option value="ArtandDecoration">Art and Decor</option>
-                  <option value="ToyandHobbies">Toy and Hobbies</option>
+                  <option value="Art and Decor">Art and Decor</option>
+                  <option value="Toy and Hobbies">Toy and Hobbies</option>
                   <option value="Garden">Garden</option>
                   <option value="Consumable">Consumable</option>
                   <option value="Other">Other</option>

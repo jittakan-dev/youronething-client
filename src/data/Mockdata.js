@@ -187,7 +187,7 @@ const Mockdata = [
     highlight: false,
     pop: 100,
     date: "2023-01-17",
-    type: "Garden",
+    type: "Art and Decor",
   },
   {
     id: 10,
