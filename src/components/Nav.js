@@ -122,112 +122,15 @@ function Nav() {
 
   return (
     <>
-      {/* Cart */}
-      <div
-        className={`fixed top-0 right-0 z-50 w-7/12 sx:w-full smr:w-full sm:w-7/12 md:2xl:w-7/12 lg:w-7/12 xl:w-7/12 2xl:w-7/12 h-full overflow-hidden transition-all duration-800 bg-slate-400 ${
-          isCartOpen ? "translate-x-0 delay-0" : "translate-x-full delay-500"
-        }`}
-      >
-        <div
-          className="flex flex-col w-full h-fit justify-start items-end py-6 px-10 text-2xl cursor-pointer"
-          onClick={clickCartNavFalse}
-        >
-          X
-        </div>
-        <div className="flex flex-col w-full h-full justify-center items-center px-20 sx:px-4 smr:px-2 sm:px-10 md:px-16 lg:px-20 xl:px-20 2xl:px-20 overflow-hidden">
-          <div className="h-full w-full justify-center items-center px-6 mb-20 overflow-y-scroll">
-            <div className="flex justify-between items-center w-full h-fit py-6 text-xl border-b-2 border-slate-800">
-              <div className="flex justify-center items-center text-2xl">
-                Your order
-              </div>
-              <div className="flex justify-center items-center py-2 px-4 rounded-xl bg-slate-700 text-slate-200">
-                <div>{selectedItems.length}</div>
-              </div>
-            </div>
-            <div
-              className="flex justify-end items-center w-full h-fit py-6 text-xl hover:text-red-700 cursor-pointer border-b-2 border-slate-800"
-              onClick={clickClearLocalStorage}
-            >
-              Clear All
-            </div>
-            <div className="flex flex-col justify-center items-center w-full h-fit py-6 text-xl">
-              {selectedItems.map((item, index) => (
-                <div
-                  key={index}
-                  className="group flex justify-between w-full border-b-2 border-slate-800 pb-4 mb-4"
-                >
-                  <Link
-                    href={"/product/" + item.id}
-                    onClick={clickCartNavFalse}
-                  >
-                    <Image
-                      src={"/product-images/" + item.image_c}
-                      alt=""
-                      width="0"
-                      height="0"
-                      sizes="100%"
-                      className="w-full h-auto object-cover border-2 rounded-lg border-slate-400 group-hover:border-slate-700"
-                      placeholder="blur"
-                      blurDataURL={"/web-images/blur.png"}
-                    />
-                  </Link>
-                  <div className="flex flex-col justify-start items-start">
-                    <div>
-                      <div className="text-xl font-semibold">
-                        <p>
-                          {index + 1}) {item.title}
-                        </p>
-                      </div>
-                      <div>Price:{item.price}</div>
-                      <div className="hidden">{(totalprice += item.price)}</div>
-                    </div>
-                    <div className="grow"></div>
-                    <div
-                      className="text-base cursor-pointer self-end hover:text-red-700"
-                      onClick={() => deleteProductId(index)}
-                    >
-                      Remove
-                    </div>
-                  </div>
-                </div>
-              ))}
-              {showDelNotification && (
-                <div className="py-6">Product is deleted successfully!</div>
-              )}
-            </div>
-            <div className="flex justify-center items-center sticky bottom-0 w-full py-10 px-6 text-xl cursor-pointer invisible bg-slate-600 text-white">
-              C
-            </div>
-          </div>
-        </div>
-        <div className="flex justify-center items-center sticky bottom-0 w-full py-10 px-6 text-xl cursor-pointer bg-slate-600 text-white">
-          Checkout - {totalprice}THB
-        </div>
-      </div>
-      {/* Cart */}
-      {/* silhouette*/}
-      <div
-        className={`flex justify-between items-center fixed top-0 right-0 z-20 w-full h-full overflow-hidden transition-all duration-700 ${
-          isCartOpen ? "translate-x-0 delay-0" : "translate-x-full delay-400"
-        }`}
-      >
-        <div
-          className={`w-5/12 sx:w-0 smr:w-0 sm:w-5/12 md:w-5/12 lg:w-5/12 xl:w-5/12 2xl:w-5/12 h-full bg-black transition-all  duration-600 ${
-            isCartOpen ? "opacity-90 delay-600" : "opacity-0 delay-0"
-          }`}
-          onClick={clickCartNavFalse}
-        ></div>
-      </div>
-      {/* silhouette*/}
       {/* NavBar */}
       <div
-        className={`flex w-full justify-center fixed z-30 top-0 right-0 items-center py-6 px-8 ${
+        className={`flex w-full justify-center fixed z-20 top-0 right-0 items-center py-4 px-8 ${
           isScrollOverHeight
-            ? "bg-slate-700 bg-opacity-90 text-white"
-            : "bg-slate-400 bg-opacity-20 "
+            ? "bg-lightGreenGlint bg-opacity-95"
+            : "bg-darkSlateGrey bg-opacity-0"
         }`}
       >
-        <div className="flex-grow flex flex-col justify-center items-start text-2xl font-semibold">
+        <div className="flex-grow flex justify-start items-start text-2xl font-semibold">
           <Link href="/">Y1T</Link>
           {/* <p
             className={`text-base ${isScrollOverHeight ? "text-red-500" : ""}`}
@@ -235,8 +138,18 @@ function Nav() {
             Scroll position: {scrollPosition}
           </p> */}
         </div>
+      </div>
+      <div className="fixed flex justify-center items-center z-40 py-4 px-8 top-0 right-0">
         <div
-          className="flex-none cursor-pointer text-xl sx:text-xl smr:text-lg sm:text-lg md:text-xl lg:text-xl xl:text-xl 2xl:text-xl px-10 sx:px-4 smr:px-4 sm:px-4 md:px-10 lg:px-10 xl:px-10 2xl:px-10"
+          className={`flex-none cursor-pointer font-medium text-2xl sx:text-xl smr:text-lg sm:text-lg md:text-xl lg:text-2xl xl:text-2xl 2xl:text-2xl px-10 sx:px-4 smr:px-4 sm:px-4 md:px-10 lg:px-10 xl:px-10 2xl:px-10 ${
+            isScrollOverHeight
+              ? isOpen
+                ? "text-rhapsodyInBlue" //bg-lightGreenGlint
+                : "text-rhapsodyInBlue" //bg-lightGreenGlint
+              : isOpen
+              ? "text-rhapsodyInBlue" //bg-rhapsodyInBlue
+              : "text-rhapsodyInBlue" //bg-rhapsodyInBlue
+          }`}
           onClick={clickCartNav}
         >
           Cart({productId ? productId : 0})
@@ -252,22 +165,22 @@ function Nav() {
               className={`bar w-full h-1 mb-2 ${
                 isScrollOverHeight
                   ? isOpen
-                    ? "bg-fontfrontColor"
-                    : "bg-slate-300"
+                    ? "bg-rhapsodyInBlue" //bg-lightGreenGlint
+                    : "bg-rhapsodyInBlue" //bg-lightGreenGlint
                   : isOpen
-                  ? "bg-slate-300"
-                  : "bg-fontfrontColor"
+                  ? "bg-rhapsodyInBlue" //bg-rhapsodyInBlue
+                  : "bg-rhapsodyInBlue" //bg-rhapsodyInBlue
               }`}
             ></span>
             <span
               className={`bar w-full h-1 ${
                 isScrollOverHeight
                   ? isOpen
-                    ? "bg-slate-300"
-                    : "bg-slate-300"
+                    ? "bg-rhapsodyInBlue"
+                    : "bg-rhapsodyInBlue"
                   : isOpen
-                  ? "bg-slate-300"
-                  : "bg-fontfrontColor"
+                  ? "bg-rhapsodyInBlue" //bg-rhapsodyInBlue
+                  : "bg-rhapsodyInBlue" //bg-rhapsodyInBlue
               }`}
             ></span>
           </div>
@@ -276,7 +189,7 @@ function Nav() {
       {/* NavBar */}
       {/* NavMenu */}
       <div
-        className={`flex justify-between items-center fixed top-0 right-0 z-20 w-full h-full overflow-hidden transition-all duration-800 ${
+        className={`flex justify-between items-center fixed top-0 right-0 z-30 w-full h-full overflow-hidden transition-all duration-800 ${
           isOpen ? "translate-x-0 delay-0" : "translate-x-full delay-500"
         }`}
       >
@@ -287,7 +200,7 @@ function Nav() {
           onClick={clickNavFalse}
         ></div>
         <div
-          className={`w-7/12 sx:w-full smr:w-full sm:w-7/12 md:2xl:w-7/12 lg:w-7/12 xl:w-7/12 2xl:w-7/12 h-full text-slate-400 bg-frontColor`}
+          className={`w-7/12 sx:w-full smr:w-full sm:w-7/12 md:2xl:w-7/12 lg:w-7/12 xl:w-7/12 2xl:w-7/12 h-full bg-aloeCream`}
         >
           <div className="flex pl-28 sx:p-20 smr:p-28 sm:pl-16 md:pl-20 lg:pl-28 xl:pl-28 2xl:pl-28 sticky top-1/4 text-3xl">
             <div className="flex flex-col justify-center items-start">
@@ -321,6 +234,105 @@ function Nav() {
         </div>
       </div>
       {/* NavMenu */}
+      {/* Cart */}
+      <div
+        className={`fixed top-0 right-0 z-50 w-7/12 sx:w-full smr:w-full sm:w-7/12 md:2xl:w-7/12 lg:w-7/12 xl:w-7/12 2xl:w-7/12 h-full overflow-hidden transition-all duration-800 shadow-xl bg-aloeCream ${
+          isCartOpen ? "translate-x-0 delay-0" : "translate-x-full delay-500"
+        }`}
+      >
+        <div className="w-full flex justify-end items-center">
+          <div
+            className="flex flex-col w-fit h-fit py-6 px-10 text-2xl cursor-pointer"
+            onClick={clickCartNavFalse}
+          >
+            X
+          </div>
+        </div>
+        <div className="flex flex-col w-full h-full justify-center items-center px-20 sx:px-4 smr:px-2 sm:px-10 md:px-16 lg:px-20 xl:px-20 2xl:px-20 overflow-hidden">
+          <div className="h-full w-full justify-center items-center px-6 mb-20 overflow-y-scroll">
+            <div className="flex justify-between items-center w-full h-fit py-6 text-xl border-b-2 border-rhapsodyInBlue">
+              <div className="flex justify-center items-center text-2xl">
+                Your order
+              </div>
+              <div className="flex justify-center items-center py-2 px-4 rounded-xl bg-rhapsodyInBlue text-lightGreenGlint">
+                <div>{selectedItems.length}</div>
+              </div>
+            </div>
+            <div
+              className="flex justify-end items-center w-full h-fit py-6 text-xl hover:text-red-700 cursor-pointer border-b-2 border-rhapsodyInBlue"
+              onClick={clickClearLocalStorage}
+            >
+              Clear All
+            </div>
+            <div className="flex flex-col justify-center items-center w-full h-fit py-6 text-xl">
+              {selectedItems.map((item, index) => (
+                <div
+                  key={index}
+                  className="group flex justify-between w-full border-b-2 border-rhapsodyInBlue pb-4 mb-4"
+                >
+                  <Link
+                    href={"/product/" + item.id}
+                    onClick={clickCartNavFalse}
+                  >
+                    <Image
+                      src={"/product-images/" + item.image_c}
+                      alt=""
+                      width="0"
+                      height="0"
+                      sizes="100%"
+                      className="w-full h-auto object-cover border-3 rounded-2xl border-aloeCream group-hover:border-rhapsodyInBlue"
+                      placeholder="blur"
+                      blurDataURL={"/web-images/blur.png"}
+                    />
+                  </Link>
+                  <div className="flex flex-col justify-start items-start">
+                    <div>
+                      <div className="text-xl font-semibold">
+                        <p>
+                          {index + 1}) {item.title}
+                        </p>
+                      </div>
+                      <div>Price:{item.price}</div>
+                      <div className="hidden">{(totalprice += item.price)}</div>
+                    </div>
+                    <div className="grow"></div>
+                    <div
+                      className="text-base cursor-pointer self-end hover:text-red-700"
+                      onClick={() => deleteProductId(index)}
+                    >
+                      Remove
+                    </div>
+                  </div>
+                </div>
+              ))}
+              {showDelNotification && (
+                <div className="py-6">Product is deleted successfully!</div>
+              )}
+            </div>
+            <div className="flex justify-center items-center sticky bottom-0 w-full py-10 px-6 text-xl cursor-pointer invisible bg-tacao text-rhapsodyInBlue">
+              C
+            </div>
+          </div>
+        </div>
+        <div className="flex justify-center items-center sticky bottom-0 w-full py-10 px-6 text-xl cursor-pointer bg-tacao text-rhapsodyInBlue">
+          Checkout - {totalprice}THB
+        </div>
+      </div>
+      {/* Cart */}
+      {/*Cart silhouette*/}
+      <div
+        className={`flex justify-between items-center fixed top-0 right-0 z-30 w-full h-full overflow-hidden transition-all duration-700 ${
+          isCartOpen ? "translate-x-0 delay-0" : "translate-x-full delay-400"
+        }`}
+      >
+        <div
+          className={`w-5/12 sx:w-0 smr:w-0 sm:w-5/12 md:w-5/12 lg:w-5/12 xl:w-5/12 2xl:w-5/12 h-full bg-black transition-all  duration-600 ${
+            isCartOpen ? "opacity-90 delay-600" : "opacity-0 delay-0"
+          }`}
+          onClick={clickCartNavFalse}
+        ></div>
+      </div>
+      {/*Cart silhouette*/}
     </>
   );
 }

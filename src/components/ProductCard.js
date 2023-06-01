@@ -17,7 +17,7 @@ const ProductCard = ({
       href={"/product/" + id}
       className="flex flex-col justify-center items-center w-full h-full cursor-pointer"
     >
-      <div className="relative w-full h-full bg-borderColor">
+      <div className="relative w-full h-full">
         {image_t && (
           <Image
             src={"/product-images/" + image_t}

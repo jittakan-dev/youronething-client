@@ -41,6 +41,21 @@ module.exports = {
         fontfrontColor: "#06152b",
         baseColor: "#EAE9E5",
         borderColor: "#bed1cb",
+        //BG:
+        rinsedOutRed: "#FF7B54",
+        apricot: "#FFB26B",
+        quicheLorraine: "#FFD56F",
+        broadBean: "#939B62",
+        bollywoodGold: "#FFFBAC",
+        cornMeal: "#FFD495",
+        //BG Footer
+        darkSlateGrey: "#314E52",
+        //BG Nav BG:aloeCream STRIP:tacao
+        aloeCream: "#D7E9B9",
+        tacao: "#FAAB78",
+        //Font Dark:rhapsodyInBlue Light:lightGreenGlint
+        rhapsodyInBlue: "#012a41",
+        lightGreenGlint: "#E8F3D6",
       },
       transitionDelay: {
         400: "400ms",
@@ -52,6 +67,9 @@ module.exports = {
         600: "600ms",
         800: "800ms",
         900: "900ms",
+      },
+      borderWidth: {
+        3: "3px",
       },
     },
   },

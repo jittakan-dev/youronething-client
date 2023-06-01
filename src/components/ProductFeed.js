@@ -207,7 +207,7 @@ const ProductFeed = () => {
   return (
     <>
       {/* BG-parallax */}
-      <div className="h-full w-full top-0 bg-slate-700">
+      <div className="h-full w-full top-0 bg-tacao">
         {highlightedItems && highlightedItems.length > 0 ? (
           highlightedItems.map((item, index) => (
             <div key={index} className="w-full">
@@ -239,10 +239,10 @@ const ProductFeed = () => {
         <div className="flex justify-start items-center w-full py-12 sx:py-4 smr:py-4 sm:py-8 md:py-12 lg:py-12 xl:py-12 2xl:py-12 px-12 sx:px-4 smr:px-4 sm:px-6 md:px-12 lg:px-12 xl:px-12 2xl:px-12">
           <div className="flex justify-start items-center sx:items-start smr:items-center sm:items-center md:items-center lg:items-center xl:items-center 2xl:items-center w-full">
             <div
-              className={`mr-3 p-6 sx:p-4 smr:p-4 sm:p-4 md:p-4 lg:p-6 xl:p-6 2xl:p-6 border-2 rounded-md bg-slate-200 cursor-pointer ${
+              className={`mr-3 p-6 sx:p-4 smr:p-4 sm:p-4 md:p-4 lg:p-6 xl:p-6 2xl:p-6 border-2 rounded-md bg-lightGreenGlint cursor-pointer ${
                 sortTab === "All"
-                  ? "bg-slate-700 border-slate-700 text-slate-100"
-                  : "bg-slate-200 border-slate-600"
+                  ? "bg-rhapsodyInBlue border-rhapsodyInBlue text-slate-100"
+                  : "bg-lightGreenGlint border-rhapsodyInBlue"
               }`}
               onClick={() => handleClick("All")}
             >
@@ -253,11 +253,7 @@ const ProductFeed = () => {
                 <select
                   name="typeValue"
                   id="typeValue"
-                  className={`p-4 sx:p-2 smr:p-2 sm:p-2 md:p-2 lg:p-4 xl:p-4 2xl:p-4 text-xl sx:text-base smr:text-base sm:text-base md:text-lg lg:text-xl xl:text-xl 2xl:text-xl rounded-md border-2 cursor-pointer border-slate-600${
-                    sortTab === "Type"
-                      ? "bg-slate-700 border-slate-700 text-slate-700"
-                      : "bg-slate-600 border-slate-700"
-                  }`}
+                  className={`p-4 sx:p-2 smr:p-2 sm:p-2 md:p-2 lg:p-4 xl:p-4 2xl:p-4 text-xl sx:text-base smr:text-base sm:text-base md:text-lg lg:text-xl xl:text-xl 2xl:text-xl rounded-md border-2 cursor-pointer border-rhapsodyInBlue focus:ring-blue-500 focus:border-blue-500`}
                   value={typeValue}
                   onChange={handleTypeChange}
                   onClick={() => handleClick("Type")}
@@ -276,7 +272,7 @@ const ProductFeed = () => {
                 <select
                   name="order"
                   id="order"
-                  className="p-4 sx:p-2 smr:p-2 sm:p-2 md:p-2 lg:p-4 xl:p-4 2xl:p-4 text-xl sx:text-base smr:text-base sm:text-base md:text-lg lg:text-xl xl:text-xl 2xl:text-xl rounded-md border-2 cursor-pointer border-slate-600 focus:ring-blue-500 focus:border-blue-500"
+                  className="p-4 sx:p-2 smr:p-2 sm:p-2 md:p-2 lg:p-4 xl:p-4 2xl:p-4 text-xl sx:text-base smr:text-base sm:text-base md:text-lg lg:text-xl xl:text-xl 2xl:text-xl rounded-md border-2 cursor-pointer border-rhapsodyInBlue focus:ring-blue-500 focus:border-blue-500"
                   value={orderValue}
                   onChange={handleOrderChange}
                 >

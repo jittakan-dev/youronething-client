@@ -48,7 +48,7 @@ const ProductCardHighlight = ({
       className="flex flex-col justify-center items-center w-full h-screen max-h-screen cursor-pointer"
       ref={cardRef}
     >
-      <div className="absolute w-auto h-auto bottom-0 flex flex-col justify-end items-center ml-24 z-20">
+      <div className="absolute w-auto h-auto bottom-0 flex flex-col justify-end items-center ml-24 z-10">
         <div className="p-24 sx:p-10">
           <div className="flex flex-col">
             <span className="text-4xl sx:text-3xl">{title}</span>
