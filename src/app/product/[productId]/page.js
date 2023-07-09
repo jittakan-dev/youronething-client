@@ -49,20 +49,6 @@ const Page = ({ params: { productId } }) => {
     setProductId(memberCount);
   }, [fetchAndSetData, setProductId]);
 
-  const [expandedImgSrc, setExpandedImgSrc] = useState("");
-  const [imgText, setImgText] = useState("");
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  const myFunction = (imgs) => {
-    setExpandedImgSrc(imgs.src);
-    setImgText(imgs.alt);
-    setIsExpanded(true);
-  };
-
-  const closeExpandedImage = () => {
-    setIsExpanded(false);
-  };
-
   return (
     <div className="flex flex-row sx:flex-col-reverse min-h-screen h-auto">
       <div className="fixed sx:relative z-10 w-1/2 sx:w-full h-screen max-h-screen">

@@ -28,6 +28,7 @@ const ProductCard = ({
             className="w-full h-auto object-cover"
             placeholder="blur"
             blurDataURL={"/web-images/blur.png"}
+            loading="lazy"
           />
         )}
       </div>
