@@ -70,7 +70,6 @@ const ProductCardHighlight = ({
             fill="true"
             blurDataURL={"/web-images/blur.png"}
             style={{ objectFit: "cover" }}
-            loading="lazy"
           />
         )}
       </div>
